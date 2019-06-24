@@ -1,0 +1,34 @@
+
+    httpリクエスト
+    get →通常アクセス、ページを作成
+    post →フォームによるデータ送信
+    patch/put →データの更新
+    delete →データ消去
+
+    ーーーー消去アクションーーーー
+    
+        メモ参照、挿入後に消去
+         User.find(id) → user.destroy 
+         
+    def destroy
+        memo = Memo.find(params["id"]) ←　メモをデータベース参照変数に挿入
+        memo.destroy　←消去
+        redirect_to "/"
+    end
+    
+    
+    ーーーー編集アクションーーーー
+    
+        メモ参照、挿入後にセーブ
+        user = User.find(1) →　user = User.age(22) → user.save
+        
+    def update
+        memo = Memo.find(params["id"])
+        memo.title = params["memos"]["title"]
+        memo.body = params["memos"]["body"]
+        memo.save
+        redirect_to "/"
+    end
+    
+    
+    
