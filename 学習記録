@@ -1,0 +1,14 @@
+# 記録
+
+
+入力フォーム　
+    form_tag    送信先
+    label_tag   ラベル付け
+    text_field  入力する場所
+    submit_tag  ボタン
+    
+    post でデータベースに保存した後にredirect_to "/"
+
+    @memos = Memo.all 全てのカテゴリーないの情報を変数に入れる
+    <% memos.each do |memo| %>
+        <p><%= memo.title %> <p>    ←表示できる<p>
