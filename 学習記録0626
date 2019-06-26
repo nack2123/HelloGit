@@ -1,0 +1,40 @@
+
+    フォーム表示・属性
+            薄いガイド表示　placeholder
+            編集    value
+            
+            rails c ターミナル上でrubyが使用できる
+            
+            カテゴリー内に情報を入れる方法
+            開発環境のみ(デプロイした時に再度追加しなきゃいけない） 1つずつ　rails c → Category.create(name:"名前")
+            本番環境  Category.find_or_create_by(name:"work") 被ってなかったら追加
+            
+    マイグレーションファイルおよびモデルの作成
+            モデル作成コマンド
+            rails g migration add_カラム名_to_テーブル名 カラム名:型
+            rails g migraion add_category_id_to_memos category_id:integer
+                
+            カラム追加コマンド
+            rails g molel モデル名 カラム名:型
+            rails g molel User name:string age:integer
+                        　↑一文字目大文字・単数形　カラム:形式
+                        　注意点・・・モデルは大文字で始まり単数形
+                                    テーブルは小文字て始まり複数形
+            マイグレーション実行コマンド
+            　rails db:migrate
+            　
+            　ーー１対多の関係 ーー
+            　全てメモはカテゴリーに所属している
+            　app/models/memo.rb/
+            　class Memo < ApplicationRecord
+              belongs_to:category ←メモはカテゴリーに対して所属している
+            end
+
+            　
+            　ーー多対１の関係 ーー
+            　カテゴリーは複数の情報を保有している
+            　app/models/memo.rb/
+            　class Category < ApplicationRecord
+              has_many :memos ←カテゴリーは複数のメモを保有ている状態
+            end
+
