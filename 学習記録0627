@@ -1,0 +1,20 @@
+
+ーーーcontroller内のアクションが同じ処理で行われる場合ーーー
+
+全てのアクションが行われる前にbefore_actionが毎回実行される
+
+class ApplicationController < ActionController::Base
+    before_action :get_category
+    
+    def get_category
+        @categories = Category.all
+    end
+end
+
+    where メソッド　
+class CategoriesController < ApplicationController
+    def show
+      @category = Category.find(params[:id])　idからカテゴリーを検索する
+      @memos = Memo.where(category_id: params[:id])　←whereメソッド
+    end
+end
