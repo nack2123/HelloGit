@@ -1,0 +1,26 @@
+    -----消去コマンド-----
+    def destroy
+        memo = Memo.find(params["id"])
+        memo.destroy
+        redirect_to "/"
+    end
+    
+    index.html.erb 
+    <a href="/memos/<%=memo.id%>" data-method="delete">削除</a>
+    
+    〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜
+    delete httpリクエスト→/memos/<%=memo.id%>→削除アクションが呼びだし
+    →実行
+    〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜
+    
+    -----編集コマンド-----
+    
+    get "/memos/:id/edit", to:"memos#edit" ←メモの編集を行うページの表示
+    patch "/memos:id", to:"memos#update" ←編集入力フォームに入力されたデータの処理
+    
+    <%= form_tag("/memos/"+@memo.id.to_s,:method=>:patch do %>
+    
+    〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜
+    @memo.id.to_s 
+    インスタンス変数から受け取ったデータを文字列に変換させた
+    〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜
