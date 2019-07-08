@@ -1,0 +1,29 @@
+      消去編集機能の復習
+      編集機能にはeditしたあとはupdateする癖をつけていくupdate更新後のホームに（redirect＿to "/")
+      を忘れないようにしていく
+      viewに受け渡す時はインスタンス変数を受け渡すようにする
+      
+
+    css受け渡し
+    <div class="buttons">
+    <p>カテゴリー未設定</p>
+    <a href="/memos/<%= memo.id%>" data-method="delete" class = "glyphicon glyphicon-trash"></a>
+    <a href="/memos/<%= memo.id%>/edit"class = "glyphicon glyphicon-edit"></a>
+    </div>
+    
+    デザインや文字移動をさせたい時class を囲ってcssで指令を与えてあげる
+    
+    ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+    ーーー更新 @受け渡しーーー
+    
+    ーーviweーー
+    <%= form_tag("/memos/"+@memo.id.to_s,:method=>:patch) do %>
+    
+    ーーcontrollerーー
+    def edit
+        @memo = Memo.find(params["id"])
+    end
+    
+    @memo 変数を.to_sで文字列に変換させることができる
+    コロンをつけ忘れてる→:method
+    ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
