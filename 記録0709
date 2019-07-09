@@ -13,5 +13,5 @@
     category テーブル
     id      name:string
     1           task
-    2           life
+    2           life　
     3           hobby
