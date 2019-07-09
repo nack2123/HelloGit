@@ -1,0 +1,17 @@
+テーブル関係性(リレーション)
+カテゴリー内の重複が発生する場合
+    重複があるところを別のテーブルを分けてあげて
+    idが呼び出された時に重複のある場所に更新処理で振り分けてあげる
+    
+    memos テーブル
+    id      title:string      category:_id:integer
+    1         買い物                life    ←重複するDRY
+    2         読書                  hobby    idに振り分けてあげる
+    3         ブログ更新            task     
+    
+    
+    category テーブル
+    id      name:string
+    1           task
+    2           life
+    3           hobby
