@@ -1,0 +1,87 @@
+テーブル一覧確認方法
+rails dbconsole　→　.tables 
+.exitでconsoleを抜けることができる
+
+
+モデル作成コマンド
+    rails g molel モデル名　カラム名：型
+    rails g molel Category  name:string
+                    ↑頭大文字及び単数形
+                    
+マイグレーションの実行コマンド
+    rails db:migraate
+    
+カラム追加コマンド
+    rails g migration add_カラム名_to_テーブル名　カラム名:型
+    rails g migration add_category_id_to_memos category_id:integer
+    category_idというカラムをmemosテーブルに挿入する
+    category_idはinteger（整数）という型で登録
+    
+    
+    ーーーモデル作成ーーー
+ec2-user:~/environment/name-sample3 (master) $ rails g model Category name:string
+Running via Spring preloader in process 4361
+      invoke  active_record
+      create    db/migrate/20190710124005_create_categories.rb　←migration作成
+      create    app/models/category.rb　←categoryファイル作成
+      invoke    test_unit
+      create      test/models/category_test.rb
+      create      test/fixtures/categories.yml
+      
+    カテゴリーを保存するテーブルを作るためのカラムの情報だけを書かれたmigrationファイルが生成
+     modelsフォルダの中にcategory modelを作るためのファイルが生成された
+     
+     
+     ーーーマイグレーション実行ーーー
+ec2-user:~/environment/name-sample3 (master) $ rails db:migrate
+== 20190710124005 CreateCategories: migrating =================================
+-- create_table(:categories)    
+   -> 0.0021s
+== 20190710124005 CreateCategories: migrated (0.0026s) ========================
+
+rails db:migrate を実行したことによって作成したカラムの情報からデータベースに
+テーブルを作成してくれる
+
+
+
+    ーーーカラム内にカテゴリーを追加ーーー
+ec2-user:~/environment/name-sample3 (master) $ rails c
+Running via Spring preloader in process 5379
+Loading development environment (Rails 5.2.3)
+2.6.3 :001 > Category.create(name:"work")
+   (0.1ms)  begin transaction
+  Category Create (0.9ms)  INSERT INTO "categories" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "work"], ["created_at", "2019-07-10 13:13:33.858829"], ["updated_at", "2019-07-10 13:13:33.858829"]]
+   (5.7ms)  commit transaction
+ => #<Category id: 1, name: "work", created_at: "2019-07-10 13:13:33", updated_at: "2019-07-10 13:13:33"> 
+ 
+ 
+ rails c ・・・rubyやrailsを簡単に実行できるモード
+ Category.create(name:"work") ・・・カラム内に"work"カテゴリーを追加
+ 
+ 
+ categoriesテーブル内にcategory情報をrails db:seedに挿入
+    db/migrate/seeds.rb
+    Category.find_or_create_by(name:"work")
+    Category.find_or_create_by(name:"life")
+    Category.find_or_create_by(name:"hobby")
+    Category.find_or_create_by(name:"other")
+    
+.find_or_create_by←元々あれば見つけてくるだけ入っていなければ自動で作成してくれる
+
+
+    ーーーカラム追加ーーー
+ec2-user:~/environment/name-sample3 (master) $ rails g migration add_category_id_to_memos category_id:integer
+Running via Spring preloader in process 8189
+      invoke  active_record
+      create    db/migrate/20190710143318_add_category_id_to_memos.rb
+      
+      カラム追加後migrateファイルに追加
+      
+class AddCategoryIdToMemos < ActiveRecord::Migration[5.2]
+  def change
+    add_column :memos, :category_id, :integer
+  end
+end
+     memosテーブルに対してinteger型のcategory_idが追加されています
+     ＃カラム追加後にデータベースに反映させるrails db:migrate
+    
