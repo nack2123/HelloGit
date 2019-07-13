@@ -63,7 +63,7 @@ rails c でメモにcategory_idを付与できるか確認する
     
     <%= select_tag 'memos[category_id]', options_from_collection_for_select(@categories, :id, :name) %>
     
-    
+    　
     
     受け渡している
     category_id:params["memos"]["category_id"]　＝　'memos[category_id]'
