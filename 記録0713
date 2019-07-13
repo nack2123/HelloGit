@@ -1,12 +1,12 @@
 ーーー所属・保有ーーー
 テーブル同士で繋がりができる
 
-1対多の関係　カテゴリーが複数のメモを持っていることを明示している
+1対多の関係　各カテゴリ-は複数のメモを保有していることを明示している
 class Category < ApplicationRecord
     has_many :memos
 end
 
-メモはそれぞれメモに所属している
+メモはそれぞれカテゴリーに所属している
 class Memo < ApplicationRecord
     belongs_to :category
 end
