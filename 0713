@@ -1,0 +1,70 @@
+ーーー所属・保有ーーー
+テーブル同士で繋がりができる
+
+1対多の関係　カテゴリーが複数のメモを持っていることを明示している
+class Category < ApplicationRecord
+    has_many :memos
+end
+
+メモはそれぞれメモに所属している
+class Memo < ApplicationRecord
+    belongs_to :category
+end
+
+メモはカテゴリーに対して所属していることをrails側に明示している
+
+
+rails c でメモにcategory_idを付与できるか確認する
+
+エラー原因　
+カテゴリー機能をつける前に新規作成から作成していたメモがデータベースに存在することが
+原因でエラーが出てしまっているrails c →Memo.allと入力する
+すると、category_idがnil（空っぽ）になっているメモがデータベースに保存されている
+エラーは、そのcategory_idがnilであるメモがデータベースに存在することにより
+、それぞれのメモのカテゴリーをビューに表示しようとした際に、category_idがnilであるメモのカテゴリー
+の名前を表示することができずエラーになってしまっています。
+なので、category_idがnilになっているメモをrails cから削除するその後、再度previewする
+<h4>Memo List</h4>
+
+    <% @memos.each do |memo| %>
+    <div class="col-sm-4">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h4><%= memo.title%></h4>
+            <p><%= memo.category.name%></p>
+            <div class="buttons">
+              <a href="/memos/<%=memo.id%>" data-method= "delete"><span class="glyphicon glyphicon-trash"></span></a>
+              <a href="/memos/<%=memo.id%>/edit"><span class="glyphicon glyphicon-edit"></span></a>
+            </div>
+          </div>
+          <div class="panel-body">
+            <%= memo.body %>
+          </div>
+        </div>
+    </div>
+    <% end %>
+    
+    
+    セレクトタグカテゴリー検索欄　
+    <%= select_tag 'memos[category_id]', options_from_collection_for_select(@categories, :id, :name) %>
+    末尾nameを変更することによって表示が変わる
+    表示方法　データベース内の内容を表示できる
+    :id 数字が振り分けられる
+    name 名前
+    ：created＿at 作成日・時間
+    
+    
+    
+    セレクトタグ受け渡し
+    def create
+        Memo.create(title:params["memos"]["title"],body:params["memos"]["body"],category_id:params["memos"]["category_id"])
+        redirect_to "/"
+    end
+    
+    <%= select_tag 'memos[category_id]', options_from_collection_for_select(@categories, :id, :name) %>
+    
+    
+    
+    受け渡している
+    category_id:params["memos"]["category_id"]　＝　'memos[category_id]'
+    
