@@ -1,0 +1,15 @@
+
+controller 内で同じアクションが呼ばれる時
+class ApplicationController < ActionController::Base
+    before_action :get_category
+    
+    def get_category
+       @categories = Category.all 
+    end
+end
+
+他のアクションが実行される前に以下のアクションが実行される
+before_action :get_category
+
+whereメソッドで複数のメモを検索
+@memos = Memo.where(category_id: params[:id])
