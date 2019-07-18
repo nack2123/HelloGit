@@ -1,0 +1,13 @@
+
+
+マイグレーションファイルおよびモデルの作成
+                モデル作成コマンド
+                rails g migration add_カラム名_to_テーブル名 カラム名:型
+                rails g migraion add_category_id_to_memos category_id:integer
+                
+    def create
+        Memo.create(title:params["memos"]["title"],body:params["memos"]["body"],category_id:params["memos"]["category_id"])
+        redirect_to "/"
+    end
+    
+    カテゴリー挿入時コマンドcreateメソッドに追加を忘れないようにする
