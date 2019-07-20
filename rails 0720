@@ -1,0 +1,57 @@
+
+ーーードロップダウンメニューーーー
+<ul class="dropdown-menu"> 
+            <% @categories.each do |category| %>
+            <li><a href="/categories/<%= category.id%>"><%= category.name %></a></li>
+            <% end %>
+            
+            <%= category.name %>設定したドロップダウンメニュー内を表示してくれる
+            
+-----マイグレーションファイルおよびモデルの作成-----
+                カラム追加コマンド
+                rails g migration add_カラム名_to_テーブル名 カラム名:型
+                rails g migraion add_category_id_to_memos category_id:integer
+                
+                モデル・カラム追加コマンド
+                rails g molel モデル名 カラム名:型
+                rails g molel User name:string age:integer
+                              ↑一文字目大文字・単数形　カラム:形式
+                        注意点・・・モデルは大文字で始まり単数形
+                                    テーブルは小文字て始まり複数形
+                        
+                        
+                        データ形式
+                        string : 文字列 （255文字以下）
+                        text : 長い文字列 （255文字以上）
+                        integer : 整数
+                        float : 浮動小数
+                        decimal : 精度の高い小数
+                        datetime : 日時
+                        timestamp : タイムスタンプ
+                        time : 時間
+                        date : 日付
+                        binary : バイナリデータ
+                        
+----each文ーーーー
+<% @memos.each do |memo| %>
+              <p><%= memo.category.name%></p>
+    <% end %>
+    
+    each文を活用する<p><%= memo.category.name%></p>
+    
+    
+ーーーbefor action ーーー
+class ApplicationController < ActionController::Base
+    befor_acition :get_category
+    
+    def get_category
+        @categories = Category.all
+    end
+end
+
+全てのアクションが実行される前にget_categoryが実行される
+
+ーーーーwhereメソッドーーー
+@memos = Memo.where(category_id: params[:id])
+
+category_id(カラム）のparams[:id]　←idを複数抽出することができる
