@@ -1,0 +1,19 @@
+モデル消去から作成までの流れ
+
+model 消去方法
+    rails destroy migration create_categories
+    ↓
+    消去後 rails dbmigrate:reset
+    ↓
+    新規作成　rails g model 名前:条件
+    
+controller作成コマンド
+    rails g controller 名前＋複数形
+    
+    whereメソッド 欲しい
+class CategoriesController < ApplicationController
+    def show
+        @category = Category.find(params[:id])
+        @memos = Memo.where(category_id: params[:id])
+    end
+end
