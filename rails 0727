@@ -1,0 +1,15 @@
+複数データベースに情報(id)を複数追加方法
+                        db/migrate/seeds.rb → Category.find_or_create_by(name:"life")
+                        seed.rb 内のカテゴリーが実行される
+                        rails db:seed
+                        
+    リレーション確認方法    ( id = name )
+        rubyコンソール rails c  
+        メモ検索       memo.all
+        変数に入れる   memo = Memo.find("id")
+        登録           memo.categoy_id = 1
+        保存           memo.save
+        
+    データベース一括消去→フォルダ消去
+            rake db:drop
+            rm -rf アプリフォルダ
