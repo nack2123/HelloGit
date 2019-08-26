@@ -1,0 +1,30 @@
+
+scaffold　作成コマンド　データベース・モデル
+delete・new・update・create・edit・index・showを自動作成してくれる
+4種類のURL (GET/POST/PATCH/DELETE) が七つのアクションに割り当てられる
+
+rails generate scaffold Micropost content:text user_id:integer
+rails generate scaffold + 名前　名前:条件
+
+文字数制限(140文字)
+validates:content,length:{maximum:140}
+
+rails console 
+    user.first 最初に登録したidが被った時に
+                １番最初に登録したデータを抜き取ることができる
+                
+                
+入力欄に空欄があるとエラー
+  ーーー複数ーーー
+  class User < ApplicationRecord
+      has_many:microposts
+      validates "name", presence: true   
+      validates "email", presence: true 
+  end
+
+  〜〜〜単一〜〜〜
+  class Micropost < ApplicationRecord
+    belongs_to:user
+    validates:content,length:{maximum:140},
+        presence: true
+end
