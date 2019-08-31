@@ -1,0 +1,28 @@
+
+ブランチ及びBitbucketなどを挿入
+$ git checkout -b "ブランチ名"　ブランチ名都度変更する
+$ git add -A
+$ git commit -m "コメント"
+$ git push -u origin ⬆︎と同じブランチ名
+
+
+    コントローラroutes.rb  作成〜削除
+         $ rails generate controller StaticPages home help  
+         $ rails destroy  controller StaticPages home help 
+        　↑削除コマンドを入力するとコントローラとroutes.rbが消去される
+        　
+    モデル model 作成〜削除
+        $ rails generate model User name:string email:string
+        $ rails destroy model User
+
+    マイグレーション変更
+        作成したマイグレーションファイルのデータベース作成
+        $ rails db:migrate
+         
+        元に戻したいときは、db:rollbackで1つ前の状態に戻します。
+        $ rails db:rollback
+         
+        最初の状態に戻したいときは、VERSION=0オプションを使います。
+        $ rails db:migrate VERSION=0
+        上記の0を別の数字に置き換えることによって、
+        指定したバージョンの状態に戻すことができます。
