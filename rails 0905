@@ -1,0 +1,54 @@
+Webサイトのレイアウトで使うコンパクトなヘルパーメソッド
+    ・メソッド定義
+    ・変数割り当て
+    ・論理評価
+    ・制御フロー
+    ・文字列の式展開
+    
+破壊的メソッド
+      >> a            ＃呼び出し
+      => [42, 8, 17]  
+      >> a.sort!      ＃変更
+      => [8, 17, 42]  
+      >> a            ＃呼び出し
+      => [8, 17, 42]
+
+pushメソッド
+    >> a.push(6)                  # 6を配列に追加する
+    => [42, 8, 17, 6]
+    >> a << 7                     # 7を配列に追加する
+    => [42, 8, 17, 6, 7]
+    >> a << "foo" << "bar"        # 配列に連続して追加する
+    => [42, 8, 17, 6, 7, "foo", "bar"]
+    
+to_aメソッド
+    >> (0..9).to_a       # 丸カッコを使い、範囲オブジェクトに対してto_aを呼びだし
+    => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    
+    
+    Railsでは文字列よりもシンボルを使う方が普通
+      シンボル・・・:name  :age :create 
+      
+        例     >> user = { :name => "Michael Hartl", :email => "michael@example.com" }
+               => {:name=>"Michael Hartl", :email=>"michael@example.com"}
+               
+               >> user[:name]              # :name に対応する値にアクセスする
+               => "Michael Hartl"
+               >> user[:password]          # 未定義のキーに対応する値にアクセスする
+               => nil
+
+inspectメソッド
+            >> puts (1..5).to_a            # 配列を文字列として出力
+            1
+            2
+            3
+            4
+            5
+            >> puts (1..5).to_a.inspect    # 配列のリテラルを出力
+            [1, 2, 3, 4, 5]
+            >> puts :name, :name.inspect
+            name
+            :name
+            >> puts "It worked!", "It worked!".inspect
+            It worked!
+            "It worked!"
