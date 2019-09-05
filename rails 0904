@@ -1,0 +1,41 @@
+title ヘルパー定義
+    app/helpers/application_helper.rb
+       module ApplicationHelper
+      
+        # ページごとの完全なタイトルを返します。
+        def full_title(page_title = '')
+          base_title = "Ruby on Rails Tutorial Sample App"  ←ページタイトル
+          if page_title.empty?
+            base_title
+          else
+            page_title + " | " + base_title
+          end
+        end
+      end
+
+
+
+  def setup
+    @base_title = "Ruby on Rails Tutorial Sample App"
+  end
+  
+　コード検索したい時
+　  ruby API やRubyリファレンスマニュアル (通称: るりま)、るりまサーチ
+　  
+  シングルクォートの文字列
+      >> 'foo' + 'bar'
+      => "foobar"
+
+      >> '#{foo} bar'     # シングルクォート内の文字列では式展開ができない
+      => "\#{foo} bar"
+    
+    
+メソッドチェーン例
+    >> nil.to_s     ＃メソッドチェーン例
+    => ""
+    
+    >> nil.empty?
+    NoMethodError: undefined method `empty?' for nil:NilClass　← エラー
+    
+    >> nil.to_s.empty?      # メソッドチェーンの例
+    => true
