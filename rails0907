@@ -1,0 +1,12 @@
+エラーではない
+>> example = User.new
+Traceback (most recent call last):
+        2: from (irb):4
+        1: from (irb):4:in `rescue in irb_binding'
+NameError (uninitialized constant User)
+
+メソッドを呼び出した直後に表示される
+"Traceback (most recent call last):"の文字列はエラーメッセージではなく
+、「トレースバック（最も直近の呼び出しが最後）」
+という意味の共通の文言ですので、
+これがエラーメッセージだと勘違いしないように注意してください。
