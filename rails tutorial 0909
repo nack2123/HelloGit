@@ -1,0 +1,9 @@
+
+webから画像ダウンロード
+curl -OL cdn.learnenough.com/kitten.jpg　←猫の画像
+mv kitten.jpg app/assets/images/　←imagesフォルダーに移動
+
+bootstrap挿入
+@import "bootstrap-sprockets";
+@import "bootstrap"; ←Bootstrap CSSのフレームワーク導入
+
