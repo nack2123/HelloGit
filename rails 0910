@@ -1,0 +1,29 @@
+コメントアウト
+    インスペクタ内のソースコードがなくなる
+        <%#= image_tag("kitten.jpg", alt: "Kitten") %>
+
+    インスペクタ内のソースコードが残る
+        img {
+          display: none;
+        }
+        
+        
+    レイアウトに各パーシャルを追加していく
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <title><%= full_title(yield(:title)) %></title>
+            <%= csrf_meta_tags %>
+            <%= stylesheet_link_tag    'application', media: 'all',
+                                       'data-turbolinks-track': 'reload' %>
+            <%= javascript_include_tag 'application',
+                                       'data-turbolinks-track': 'reload' %>
+            <!--[if lt IE 9]>
+              <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
+              </script>
+            <![endif]-->
+            <%= render 'layouts/shim' %>　←shimパーシャル作成
+          </head>                           
+          
+    パーシャル部分的に繋げてコードを綺麗にする
+         layoutsに_shim.html.erbとして作成する
