@@ -7,3 +7,4 @@ bootstrap挿入
 @import "bootstrap-sprockets";
 @import "bootstrap"; ←Bootstrap CSSのフレームワーク導入
 
+ 
