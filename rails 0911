@@ -1,0 +1,94 @@
+    -scss-
+        共通するパターンがある場合は
+        ネスト（入れ子）にすることができる
+    
+        .center {
+          text-align: center;
+        }
+        
+        .center h1 {
+          margin-bottom: 10px;
+        }
+        
+        ⬇︎ネスト
+        .center {
+          text-align: center;
+          h1 {
+            margin-bottom: 10px;
+          }
+        }
+        
+        
+    -sass-
+        記述が簡素化されている為、コーティングがコンパクト、
+        簡潔にできる。
+        
+        .center 
+          text-align: center;
+          h1 
+            margin-bottom: 10px;
+              
+              
+        sass変数定義
+            共通コマンドを変数を集約出来る
+            
+            h2 {
+            color: #777;
+            {
+            
+            footer {
+              color: #777;
+            }
+            
+            ー集約ー
+            $light-gray: ＃777;
+            
+            h2 {
+            color: $gray-light;
+            {
+            
+            footer {
+              color: $gray-light;
+            }
+    レイアウトリンク先
+        ページ名  URL	    名前付きルート
+        Home	  /	        root_path
+        About	  /about	about_path
+        Help	  /help	    help_path
+        Contact	  /contact	contact_path
+        Sign up	  /signup	signup_path
+        Log in	  /login	login_path
+    
+    
+    ルートURLを定義
+        ルーティングを定義することの効果は、ブラウザからアクセスしやすく
+        名前付きルートを使ってURLを参照することができる
+        root 'application#hello'
+        root 'users#index'
+        root 'static_pages#home'
+        
+    統合テスト (html)
+        統合テストコマンド　$ rails test:integration
+        全てのテスト        $ rails test
+        ブラウザを立ち上げてそれぞれのurlにアクセスする手間を省き
+        一連の作業を自動化してtestする方法
+        
+        テスト用のrb作成
+        rails generate integration_test site_layout
+        rails generate (2番目挿入フォルダー+１番目挿入フォルダ) (名前)
+        
+        テストしたいurlなどを指定
+        test/integration/site_layout_test.rb
+                require 'test_helper'
+        
+                class SiteLayoutTest < ActionDispatch::IntegrationTest
+                
+                  test "layout links" do
+                    get root_path
+                    assert_template 'static_pages/home'
+                    assert_select "a[href=?]", root_path, count: 2
+                    assert_select "a[href=?]", help_path
+                    assert_select "a[href=?]", about_path
+                    assert_select "a[href=?]", contact_path
+                  end
+                end
