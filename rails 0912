@@ -1,0 +1,45 @@
+ロールバック
+  全てのマイグレーションファイルを元に戻す
+  データ更新などで障害が起こったときに、
+  その前の状態にまで戻ることをいう。後進復帰とも言う。
+    rails db:rollback
+    
+DB Browser for SQLite
+  　データベースの構造を見ることができる
+rails console --sandbox
+    データベースを変更せずにコンソールを動かせる
+＞＞user.valid?
+userオブジェクトを使う上で『有効性 (Validity)』
+かどうかを確認できる。
+
+
+Rails ターミナルコマンド
+    ・reloadコマンド
+        データベースの情報を元にオブジェクトを
+        再読み込みするなので変更が取り消される
+    　>> user.email
+      => "mhartl@example.net"
+      >> user.email = "foo@bar.com"
+      => "foo@bar.com"
+      >> user.reload.email
+      => "mhartl@example.net"
+      
+      
+    ・update_attributes
+      >> user.update_attributes(name: "The Dude", email: "dude@abides.org")
+        ハッシュを受け取り更新と保存を同時行う
+      => true
+      >> user.name
+      => "The Dude"
+      >> user.email
+      => "dude@abides.org"
+      
+errorsオブジェクト
+      >> user.errors.full_messages
+      => ["Name can't be blank"]
+      
+      
+バリデーション
+  uniqueness  属性の値が一意（unique）であり
+              重複していないことを検証する
+             
