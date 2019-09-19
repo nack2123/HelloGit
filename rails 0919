@@ -1,0 +1,31 @@
+Railsの3つの環境
+    テスト環境 (test)
+    開発環境 (development)
+    本番環境 (production)
+    
+    
+routes.rbにUsersリソースを追加する
+    Rails.application.routes.draw do
+      root 'static_pages#home'
+      get  '/help',    to: 'static_pages#help'
+      get  '/about',   to: 'static_pages#about'
+      get  '/contact', to: 'static_pages#contact'
+      get  '/signup',  to: 'users#new'
+      resources :users　←追加
+    end
+    
+    
+debuggerメソッド
+            アプリケーション作成時よくわからない挙動があったら
+            トラブルが起こっていそうなコードに
+            debuggerを差し込んで調べる
+    class UsersController < ApplicationController
+
+          def show
+            @user = User.find(params[:id])
+            debugger    ←断片的にバグを見ることができる
+          end
+        
+          def new
+          end
+        end
