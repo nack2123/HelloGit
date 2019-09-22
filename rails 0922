@@ -1,0 +1,33 @@
+rails db:migrate:reset
+        データベースの内容をリセットする
+
+
+$ rails routes
+    現状のルーティングを確認することができる
+    
+    
+ユーザーログイン後にユーザー情報のページにリダイレクトする
+    def create
+    user = User.find_by(email: params[:session][:email].downcase)
+    if user && user.authenticate(params[:session][:password])
+      # ユーザーログイン後にユーザー情報のページにリダイレクトする
+    else
+      # エラーメッセージを作成する
+      render 'new'
+    end
+    
+    
+    user && user.authenticate(params[:session][:password])
+        ⬆︎  && (論理積 (and)) ログインするときに一意性がなくてはならない
+        
+    User	Password	a && b
+        存在しない	何でもよい	            (nil && [オブジェクト]) == false
+        有効なユーザー	誤ったパスワード	(true && false) == false
+        有効なユーザー	正しいパスワード	(true && true) == true
+            
+           ・ user && user.authenticate(…)の結果の組み合わせ
+           
+フラッシュメッセージ
+       リクエストエラーメッセージなどで一度表示された後に動的に消える
+       
+       
