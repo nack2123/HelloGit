@@ -1,0 +1,22 @@
+    log_in メソッド
+            session[:user_id] = user.id
+            
+    ユーザー登録中にログイン
+
+    ruby 三項演算子
+        簡易的なif文などを
+    
+        if 条件
+        　式１
+        else
+        　式２
+        end
+        
+        このようなif文を
+        
+        条件 ? 式１ : 式２　
+        
+        に置き換えることができる
+def log_in_as(user)
+    session[user_id] = user.id
+    
