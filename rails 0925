@@ -1,0 +1,29 @@
+本番環境
+    $ heroku maintenance:on
+    $ git push heroku
+    $ heroku run rails db:migrate
+    $ heroku maintenance:off
+    
+    トラフィックの多い本番サイトではメンテナンスモードを
+    使用するのが一般的
+    一時的にアクセスできない状態の間に
+    標準のメンテナンスページを表示することができる
+    
+    
+フレンドリーフォワーディング
+  保護された自分のページに自動的にアクセスされる
+  
+インスタンス変数
+  @usersなどのインスタンス変数などの一気に呼び出すと
+  データ量が多い場合問題が生じる
+  
+Tarminal入力表示が以上になったとき
+UNIX系OS系でこうなることが多いらしい
+    直し方
+    次のコマンドを実行します。
+    
+    $ stty sane
+    
+migrateコマンドを実行してもうまくいかないときはresetする
+    $ rails db:migrate:reset
+    $ rails db:seed
