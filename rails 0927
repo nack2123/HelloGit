@@ -1,0 +1,24 @@
+form_forメソッド　シンボル違い
+    @password_reset
+    :password_reset
+
+シンボルを使うとよりシンプルなformタグが生成され、
+オブジェクトを渡すとそのオブジェクトに寄って良しなに
+出し分けてくれます。
+
+以下form_for :postとします。
+具体的にはシンボルを使うと
+
+<form action="/posts" method="post">
+@post = Post.new したオブジェクトを使うと
+
+<form action="/posts/create" class="new_account" id="new_account" method="post">
+
+@post = Post.find(1) したオブジェクトを使うと⬇
+
+<form action="/posts/update" class="edit_account"id="edit_account_1" method="post">
+<input name="_method" type="hidden" value="put">
+がそれぞれ吐かれます。
+
+newやeditのviewを準備する時に、同じ_form部分テンプレートを利用した時、
+同じ書き方で出し分けてくれるのが便利。ということのようです。
