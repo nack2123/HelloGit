@@ -1,0 +1,10 @@
+    ルーティングは合致するURLを上から順に探していく
+    「posts/:id」というルーティングは「posts/index」より下に書かなければいけない
+    
+        Rails.application.routes.draw do
+          get "posts/index" => "posts#index"
+          get "posts/:id" => "posts#show"
+  
+        
+        ※ Rubyでは#{ }を用いて変数の値を文字列中に表示することができます。
+        <%= link_to(Post.content,"/post/#{posts[:id]} %>
