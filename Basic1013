@@ -1,0 +1,26 @@
+    入力フォーム
+       <textarea></textarea>
+       投稿ボタン
+        <input type="submit" value="投稿">
+        
+    orderメソッド
+        投稿一覧を並び替えることができます
+        controller  created(作成時）　desc(降順)
+        @post = Post.all.order(created_at: :desc)
+        
+    link_toメソッド
+        css  <a href= "/">TweetApp</a>
+        ruby <%= link_to("TweetApp","/") %>
+        
+    バリデーション
+        不正なデータがデータベースに保存されないように、
+        データをチェックする仕組みのことをバリデーションと言います。
+        バリデーションに引っかかった場合（不正なデータの場合）
+        にはデータベースに保存されません。
+        バリデーションは図のように、モデルで設定します。
+        「validates」を用いてカラム名と内容を指定します。
+        図のように{presence: true}を用いることで、
+        「そのカラムの値が存在するかどうか」をチェックすることができます。
+                
+        lengthを用い、{maximum: 数値}　文字数の制限ができる
+        validates :content, {presence: true}　空投稿の場合を制御する
