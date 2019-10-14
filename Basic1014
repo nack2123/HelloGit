@@ -1,0 +1,15 @@
+        エラーメッセージを表示するには以下のようにします。
+        @post.errors.full_messages
+        
+        テーブル内のカラムを追加したい時
+        　rails g migration カラム名
+        
+        カラムをデータベースに反映させる時
+          　①migrateファイル内のchangeアクションにカラムを挿入
+        　　②rails db:migrate　データベースに反映
+            
+            class AddImageNameToUsers < ActiveRecord::Migration[5.0]
+              def change
+                add_column :users, :image_name, :string
+              end
+            end
