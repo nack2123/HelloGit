@@ -1,0 +1,16 @@
+ユーザー登録時ログイン状態
+    ユーザー登録時に内容をsession[: ]に入れることによって
+    そのままログイン状態をに移行することが出来る。
+  def create
+    新規作成変数定義(
+      nameのハッシュ定義,
+      emailのハッシュ定義,
+      image_nameハッシュ定義,
+      passwordのハッシュ定義
+    )
+    if 変数定義
+      session[: ]に変数.id代入する
+    else
+      renderメソッド
+    end
+  end
