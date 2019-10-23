@@ -1,0 +1,81 @@
+    特定のメソッドのみを実行する
+    ----validates----
+class モデル < ApplicationRecord
+    モデルに条件を付与することができる
+    空欄登録などの制限・文字数制限
+    validates :name, {presence: true}
+    validates :email, {presence: true, uniqueness: true}
+    validates :password, {presence: true}
+    validates :content, {presence: true, length: {maximum: 140}}
+    validates :user_id, {presence: true}
+    ----before_action継承----
+    
+before_actionを使うことによってログイン認証などができる
+ログイン認証後独自のアクション処理などでできる
+    class ApplicationController < ActionController::Base
+      application.html.erb
+      //set_current_userメソッドを設定することで他のcontrollerに
+      // メソッドを継承することができる
+      before_action :set_current_user,{only: [:index, :show, :edit, :update]}
+      
+      def set_current_user
+        @current_user = User.find_by(id: session[:user_id])
+      end
+      
+      def authenticate_user
+        if @current_user == nil
+          flash[:notice] = "ログインが必要です"
+          redirect_to("/login")
+        end
+      end
+    end
+
+    
+    class UsersController < ApplicationController
+     sample.html.erb
+     //onlyを用いて適用したいアクションを設定する
+     //authenticate_userを継承先で使える
+     before_action :authenticate_user, {only: [:アクション名]}
+     
+    ----user_投稿時の紐付け----
+     
+    class PostsController < ApplicationController
+      def create
+        @post = Post.new(
+          content: params[:content],
+          # user_idの値をログインしているユーザーのidにしてください
+          name_id: @current_user.id
+        )
+    
+    class ApplicationController < ActionController::Base
+      before_action :set_current_user
+      
+      def set_current_user
+        @current_user = User.find_by(id: session[:user_id])
+      end
+     
+     
+    ーーbefore_action ユーザーの編集を制限ーー
+    　def 正しいユーザーかを確かめる
+        if ログイン中のidと編集中のidが等しくない場合
+          フラッシュメッセージ
+          リダイレクト
+        end
+      end
+        
+    インスタンスメソッド紐付け
+      def user
+        return User.find_by(id: self.user_id)
+     end
+    
+    --if文表示 編集項目を表示する--
+    //投稿したユーザーidとログインユーザーidが等しい場合表示する
+        <% if @post.user_id == @current_user.id%>
+        　<div class="post-menus">
+            <%= link_to("編集", "/posts/#{@post.id}/edit") %>
+            <%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %>
+        　</div>
+        <% end %>
+        
+    HTML要素に対してlink_toメソッドを使うには、少し異なる書き方をする必要があります。
+右の図のように、<%= link_to(URL) do %>と<% end %>の間にHTML要素を書くことで、その部分をリンクにすることができます。
