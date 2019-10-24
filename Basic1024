@@ -1,0 +1,26 @@
+    ーーーカラム挿入・消去ーーー
+    
+    ■ ターミナルでコマンドを実行してください
+
+    rails g migration カラム名
+    
+    ■ ターミナルで以下のコマンドを実行
+    
+    rails console
+    
+    ■ コンソールで以下のコードを実行してください
+
+    user = User.find_by(id: 1)　
+    user.password = "適当なパス"
+    user.save
+    
+    class ChangeUsersColumns < ActiveRecord::Migration[5.0]
+        def change
+    挿入    add_column :テーブル, :カラム, :型
+    消去    remove_column :テーブル, :カラム, :型
+        end
+
+    ■ マイグレーションファイルを変更してから以下のコマンドを実行
+    
+    rails db:migrate
+    
