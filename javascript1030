@@ -1,0 +1,39 @@
+ javasqript
+    if文　かつ条件分岐　&&
+        const number = 31;
+    if（number >= 10 && number <30){
+        conole.log("numberは2桁です");
+        }
+        
+switch文    break(処理終了）
+    const rank = 値;
+    
+    switch (rank) {
+      case 1:値1
+        条件処理
+        break;
+        
+      case 2:値2
+        条件処理
+        break;
+        
+      default:
+        条件処理
+        break;
+    }
+
+オブジェクトと配列
+    //配列
+        [値1,値2,値3]
+    //オブジェクト
+        {プロパティー1:値1,プロパティー2:値2}
+    
+配列と繰り返し
+    配列＋lengthを使用することで配列の要素数を取得することができる
+    const animals = ["dog", "cat", "sheep", "rabbit", "monkey", "tiger", "bear", "elephant"];
+    
+    console.log(animals.length); ←animals配列要素数を取得できる
+    
+    for (let i = 0; i < animals.length; i++) {
+      console.log(animals[i]);
+    }
