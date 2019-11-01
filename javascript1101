@@ -1,0 +1,34 @@
+関数の呼び出し
+    const greet = function() {
+        console.log("こんにちは！");
+        console.log("関数を学習していきましょう！");
+        };
+
+    // 関数を呼び出してください
+    greet();
+
+アロー関数
+    functionをが省略され（）=>で関数呼び出しが出来るようになった
+    const greet = ()=> {
+        console.log("こんにちは！");
+        console.log("関数を学習していきましょう！");
+        };
+
+    // 関数を呼び出してください
+    greet();
+
+　const 定数名 = (引数) =>{
+　  //処理
+　 }
+　 定数名(値);
+　 
+戻り値
+    　const half = (number) => {
+      // numberを2で割った値を戻り値として返してください
+      return number / 2;
+    };
+
+    // 定数resultを定義してください
+    const result = half(130);
+    // 「130の半分は〇〇です」となるように出力してください
+    console.log(`130の半分は${result}です `);
