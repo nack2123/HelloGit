@@ -1,0 +1,32 @@
+■SQL 
+    DISTINCT 重複するデータを除く事ができる
+    SELECT DISTINCT(character_name)
+    FROM purchases;
+    
+    集計関数　データの平均、合計を計算してくれる
+        ・SUM,COUNT,AVG,MAX・MIN
+        SUM関数
+        SELECT SUM(price)
+        FROM purchases
+        WHERE character_name = "にんじゃわんこ";
+        
+        ・GROUP BY 検索して絞る事ができる
+        SUM関数
+        SELECT 集計関数
+        FROM テーブル
+        GROUP BY カラム
+        
+        ・HAVING
+            GOUP BYなどによって検索されたデータを
+            さらに絞り込む
+            
+        以下ののように実行される
+          検索            where
+                    ↓
+          グループ化      GROUP BY
+                    ↓
+          関数            MAX,MIN,SUM,AVG
+                    ↓
+          HAVING          HAVING
+          
+          
