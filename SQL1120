@@ -1,0 +1,15 @@
+・JOIN　テーブル内のnullレコード以外のものを実行結果に表示させることが出来る
+・LEFT　JOIN nullレコードも実行結果に表示させることが出来る
+
+    SELECT カラム
+    FROM 1テーブル
+    JOIN 2つなげるテーブル
+    ON 1テーブルid = 2テーブルid
+    GROUP BY 
+    ;
+    
+AS 取得したカラム名の表示変更することが出来る
+    SELECT カラム AS "身長180cm以上の選手"
+    FROM テーブル
+    where 条件
+    ;
